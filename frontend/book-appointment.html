@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - MediCare Hospital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/smart-features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="#0284c7">
+                    <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                </svg>
+                <span>MediCare Hospital</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="doctors.html">Find Doctors</a></li>
+                <li><a href="patient-dashboard.html#symptom-finder-section">Symptom Finder</a></li>
+                <li><a href="patient-dashboard.html#marketplace-section">Slot Marketplace</a></li>
+                <li><a href="appointments.html">My Appointments</a></li>
+                <li><a href="patient-dashboard.html">Dashboard</a></li>
+            </ul>
+            <div class="nav-actions" id="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Booking Section -->
+    <section class="section" style="background:#f8fafc;padding:48px 0;">
+        <div class="container" style="max-width:900px;">
+            <div style="text-align:center;margin-bottom:36px;">
+                <h1 style="font-size:2.4rem;font-weight:800;color:#0f172a;margin-bottom:8px;">Book Doctor Appointment</h1>
+                <p style="color:#64748b;font-size:1.05rem;">Choose your physician, pick a consultation date, and reserve an optimized time slot with smart wait estimation.</p>
+            </div>
+
+            <div class="card" style="padding:36px;box-shadow:var(--shadow-md);">
+                <form id="booking-form">
+                    <!-- Step 1: Select Doctor -->
+                    <div class="form-group">
+                        <label class="form-label" style="font-size:1rem;" for="doctor-select">
+                            1. Select Doctor & Specialization *
+                        </label>
+                        <select id="doctor-select" class="form-control" style="font-size:1rem;padding:12px;" required>
+                            <option value="">-- Choose a Doctor --</option>
+                        </select>
+                        <div class="form-hint">Doctors who are on leave or fully booked cannot be selected.</div>
+                    </div>
+
+                    <!-- Doctor Quick Summary Preview -->
+                    <div id="doctor-summary" style="display:none;background:var(--primary-light);border:1px solid #bae6fd;padding:16px 20px;border-radius:var(--radius-md);margin-bottom:24px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <div>
+                                <h4 id="summary-doc-name" style="color:#0369a1;font-size:1.1rem;margin-bottom:4px;">Doctor Name</h4>
+                                <div id="summary-doc-spec" style="font-size:0.9rem;color:#0f766e;font-weight:600;">Specialty</div>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-size:0.8rem;color:#64748b;">Fee</div>
+                                <div id="summary-doc-fee" style="font-size:1.2rem;font-weight:700;color:#0f172a;">$0.00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Select Date -->
+                    <div class="form-group">
+                        <label class="form-label" style="font-size:1rem;" for="appointment-date">
+                            2. Select Consultation Date *
+                        </label>
+                        <input type="date" id="appointment-date" class="form-control" style="font-size:1rem;padding:12px;" required>
+                        <div class="form-hint">Past dates are disabled automatically.</div>
+                    </div>
+
+                    <!-- Step 3: Choose Smart Time Slot -->
+                    <div class="form-group" style="margin-bottom:28px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                            <label class="form-label" style="font-size:1rem;margin:0;">
+                                3. Select Smart Slot & Wait Estimate *
+                            </label>
+                            <button type="button" class="btn btn-outline btn-sm" onclick="openWaitlistModal()" style="font-size:0.75rem;">
+                                🎟️ Can't find a time? Join Waitlist
+                            </button>
+                        </div>
+                        <div id="slots-container" style="background:#ffffff;border:1px solid var(--border-color);border-radius:var(--radius-md);padding:20px;">
+                            <p style="color:#64748b;font-size:0.92rem;">Select a doctor and date above to load available time slots.</p>
+                        </div>
+                        <div class="form-hint">Slots include dynamic waiting time prediction based on doctor queue.</div>
+                    </div>
+
+                    <!-- Step 4: Reason / Symptoms -->
+                    <div class="form-group" style="margin-bottom:32px;">
+                        <label class="form-label" style="font-size:1rem;" for="appointment-reason">
+                            4. Reason for Visit / Medical Symptoms
+                        </label>
+                        <textarea id="appointment-reason" class="form-control" placeholder="Describe symptoms, medical history, or consultation goals (e.g. routine checkup, persistent headache)..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div style="border-top:1px solid var(--border-color);padding-top:24px;display:flex;justify-content:space-between;align-items:center;">
+                        <a href="patient-dashboard.html" class="btn btn-outline">Cancel</a>
+                        <button type="submit" id="submit-booking-btn" class="btn btn-primary btn-lg" disabled>
+                            Confirm & Book Appointment
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MediCare Hospital Appointment Booking System. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/qr-pass.js"></script>
+    <script src="js/smart-patient.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Maven Wrapper Executable for Unix
+# ----------------------------------------------------------------------------
+
+which mvn >/dev/null 2>&1
+if [ $? -eq 0 ]; then
+    exec mvn "$@"
+else
+    echo "Maven command 'mvn' not found in PATH."
+    echo "Please install Maven or add it to PATH."
+    exit 1
+fi

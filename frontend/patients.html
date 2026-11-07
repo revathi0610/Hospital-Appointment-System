@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients Directory - MediCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo" style="font-size:1.15rem;">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="#0284c7">
+                        <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                    </svg>
+                    <span>MediCare</span>
+                </a>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="user-avatar-sm" id="sidebar-user-avatar">U</div>
+                <div class="user-info-text">
+                    <div class="user-name" id="sidebar-user-name">Loading...</div>
+                    <div class="user-role-badge" id="sidebar-user-role">STAFF</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="doctor-dashboard.html" id="menu-back">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="patients.html" class="active" id="menu-patients">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Patient Records
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn btn-outline btn-sm" style="width:100%;color:#ef4444;border-color:#ef4444;">
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="topbar">
+                <div class="topbar-title">Patient Records Directory</div>
+                <div style="width:300px;">
+                    <input type="text" id="patient-search" class="form-control" placeholder="🔍 Search patient by name or email...">
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="table-card">
+                    <div class="table-header">
+                        <div class="table-title">Registered Patients Database</div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email Address</th>
+                                    <th>Phone</th>
+                                    <th>Gender</th>
+                                    <th>Date of Birth</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-patients-table">
+                                <tr>
+                                    <td colspan="7" style="text-align:center;padding:32px;color:#64748b;">
+                                        Loading patient records...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        // Update sidebar links depending on whether viewer is Doctor or Admin
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = requireAuth(['DOCTOR', 'ADMIN']);
+            if (!user) return;
+            initSidebarUser('menu-patients');
+            if (user.role === 'ADMIN') {
+                const backLink = document.getElementById('menu-back');
+                if (backLink) backLink.href = 'admin-dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

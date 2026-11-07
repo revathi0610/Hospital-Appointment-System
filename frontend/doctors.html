@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Doctors - MediCare Hospital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/smart-features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="#0284c7">
+                    <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                </svg>
+                <span>MediCare Hospital</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="doctors.html" class="active">Find Doctors</a></li>
+                <li><a href="book-appointment.html">Book Appointment</a></li>
+            </ul>
+            <div class="nav-actions" id="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header & Search Bar -->
+    <section style="background:linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);padding:48px 0;border-bottom:1px solid var(--border-color);">
+        <div class="container">
+            <h1 style="font-size:2.4rem;font-weight:800;color:#0f172a;margin-bottom:8px;">Find Specialist Doctors</h1>
+            <p style="color:#64748b;font-size:1.05rem;margin-bottom:28px;">Search across board-certified physicians, view qualifications, and check consultation rates.</p>
+
+            <div style="background:#ffffff;padding:16px 20px;border-radius:var(--radius-md);box-shadow:var(--shadow-md);display:grid;grid-template-columns:1.5fr 1fr;gap:16px;">
+                <div>
+                    <input type="text" id="doctor-search" class="form-control" placeholder="🔍 Search doctor by name or medical specialty...">
+                </div>
+                <div>
+                    <select id="specialization-filter" class="form-control">
+                        <option value="ALL">All Medical Specializations</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Grid Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid-4" id="doctors-list">
+                <!-- Dynamically loaded by main.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MediCare Hospital Appointment Booking System. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

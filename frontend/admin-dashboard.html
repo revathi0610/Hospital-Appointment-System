@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MediCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/smart-features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo" style="font-size:1.15rem;">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="#0284c7">
+                        <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                    </svg>
+                    <span>MediCare</span>
+                </a>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="user-avatar-sm" id="sidebar-user-avatar">A</div>
+                <div class="user-info-text">
+                    <div class="user-name" id="sidebar-user-name">Administrator</div>
+                    <div class="user-role-badge" id="sidebar-user-role">ADMIN</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="admin-dashboard.html" class="active" id="menu-dashboard">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#admin-analytics-section" onclick="document.getElementById('admin-analytics-section').scrollIntoView({behavior:'smooth'});return false;">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        Hospital Analytics
+                    </a>
+                </li>
+                <li>
+                    <a href="#keywords-section" onclick="document.getElementById('keywords-section').scrollIntoView({behavior:'smooth'});return false;">
+                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        Symptom Keywords
+                    </a>
+                </li>
+                <li>
+                    <a href="#qr-verify-section" onclick="document.getElementById('qr-verify-section').scrollIntoView({behavior:'smooth'});return false;">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        QR Verification
+                    </a>
+                </li>
+                <li>
+                    <a href="#doctors-section" onclick="document.getElementById('doctors-section').scrollIntoView({behavior:'smooth'});return false;">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Manage Doctors
+                    </a>
+                </li>
+                <li>
+                    <a href="#patients-section" onclick="document.getElementById('patients-section').scrollIntoView({behavior:'smooth'});return false;">
+                        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                        View Patients
+                    </a>
+                </li>
+                <li>
+                    <a href="#appointments-section" onclick="document.getElementById('appointments-section').scrollIntoView({behavior:'smooth'});return false;">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        All Appointments
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn btn-outline btn-sm" style="width:100%;color:#ef4444;border-color:#ef4444;">
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="topbar">
+                <div class="topbar-title">Hospital Administration Overview</div>
+                <div style="display:flex;align-items:center;">
+                    <!-- Notification Bell mounts here -->
+                    <button class="btn btn-primary btn-sm" onclick="openAddDoctorModal()">+ Add New Doctor</button>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <!-- KPI Stat Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Total Appointments</h4>
+                            <div class="stat-number" id="stat-total-appointments">0</div>
+                        </div>
+                        <div class="stat-icon stat-blue">📋</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Today's Appointments</h4>
+                            <div class="stat-number" id="stat-today-appointments">0</div>
+                        </div>
+                        <div class="stat-icon stat-teal">📅</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Total Patients</h4>
+                            <div class="stat-number" id="stat-total-patients">0</div>
+                        </div>
+                        <div class="stat-icon stat-amber">👥</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Active Doctors</h4>
+                            <div class="stat-number" id="stat-available-doctors">0</div>
+                        </div>
+                        <div class="stat-icon stat-green">🩺</div>
+                    </div>
+                </div>
+
+                <!-- FEATURE 7: HOSPITAL OPERATIONAL INTELLIGENCE & ANALYTICS -->
+                <div class="table-card" id="admin-analytics-section" style="margin-top:24px;">
+                    <div class="table-header">
+                        <div class="table-title">📈 Hospital Capacity & Operational Analytics</div>
+                    </div>
+                    <div style="padding:20px;">
+                        <div class="stats-grid" style="grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));margin-bottom:20px;">
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h4>Capacity Utilization</h4>
+                                    <div class="stat-number" id="stat-hospital-utilization" style="color:#0284c7;">0%</div>
+                                </div>
+                                <div class="stat-icon stat-blue">⚡</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h4>Avg Hospital Wait Time</h4>
+                                    <div class="stat-number" id="stat-hospital-avg-wait" style="color:#16a34a;">~18 mins</div>
+                                </div>
+                                <div class="stat-icon stat-green">⏱️</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h4>Overall Completion Rate</h4>
+                                    <div class="stat-number" id="stat-hospital-completion-rate" style="color:#0f766e;">0%</div>
+                                </div>
+                                <div class="stat-icon stat-teal">✅</div>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+                            <!-- Department Breakdown -->
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <span>🏥 Appointments by Specialization</span>
+                                </div>
+                                <div id="admin-dept-breakdown-bars">
+                                    <div style="color:#94a3b8;font-size:0.85rem;">Loading department breakdown...</div>
+                                </div>
+                            </div>
+
+                            <!-- 14-Day Activity Volume -->
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <span>📅 14-Day Appointment Volume Trend</span>
+                                </div>
+                                <div id="admin-14day-volume-bars">
+                                    <div style="color:#94a3b8;font-size:0.85rem;">Loading trend volume...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FEATURE 2: SYMPTOM KEYWORD MANAGER (Admin Tool) -->
+                <div class="table-card" id="keywords-section" style="margin-top:28px;">
+                    <div class="table-header">
+                        <div>
+                            <div class="table-title">🏷️ Symptom → Specialization Keyword Rules</div>
+                            <div style="font-size:0.8rem;color:#64748b;margin-top:2px;">
+                                Configure clinical keywords to tune the AI Symptom Finder and Assistant Chatbot recommendations.
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding:20px;">
+                        <!-- Add Keyword Form -->
+                        <form id="add-keyword-form" style="background:#f8fafc;border:1px solid #e2e8f0;padding:16px;border-radius:12px;margin-bottom:20px;">
+                            <div style="font-weight:700;font-size:0.92rem;margin-bottom:12px;color:#1e293b;">+ Add / Map New Medical Keywords</div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Specialization *</label>
+                                    <input type="text" id="kw-specialization" class="form-control" placeholder="e.g. Cardiology" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Department</label>
+                                    <input type="text" id="kw-department" class="form-control" placeholder="e.g. Cardiac Sciences">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Keywords (Comma separated) *</label>
+                                <input type="text" id="kw-keywords" class="form-control" placeholder="e.g. chest pain, heart palpitations, shortness of breath, angina" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Clinical Rationale / Description</label>
+                                <input type="text" id="kw-description" class="form-control" placeholder="e.g. Specializes in disorders of the heart and cardiovascular blood vessels.">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm">+ Save Keyword Mapping</button>
+                        </form>
+
+                        <!-- Existing Keywords Table -->
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Specialization</th>
+                                        <th>Department</th>
+                                        <th>Configured Keywords</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-keywords-table-body">
+                                    <tr><td colspan="4" style="text-align:center;padding:16px;color:#64748b;">Loading keywords...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FEATURE 6: QR VERIFICATION CHECK-IN DESK -->
+                <div class="table-card" id="qr-verify-section" style="margin-top:28px;">
+                    <div class="table-header">
+                        <div class="table-title">🔍 Hospital Reception & QR Pass Verifier</div>
+                    </div>
+                    <div style="padding:20px;max-width:650px;">
+                        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;">
+                            Hospital staff can enter or scan any digital appointment pass token UUID to immediately verify appointment authenticity.
+                        </p>
+                        <div style="display:flex;gap:10px;margin-bottom:16px;">
+                            <input type="text" id="qr-verify-token-input" class="form-control" placeholder="Enter or scan pass token UUID...">
+                            <button id="btn-verify-qr-token" class="btn btn-primary" style="white-space:nowrap;">Verify Pass</button>
+                        </div>
+                        <div id="qr-verify-result-output"></div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Appointments Preview Table -->
+                <div class="table-card" style="margin-top:28px;">
+                    <div class="table-header">
+                        <div class="table-title">Recent Upcoming Appointments</div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Appointment ID</th>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-upcoming-table">
+                                <tr><td colspan="6" style="text-align:center;padding:24px;color:#64748b;">Loading appointments...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Doctors Directory Section -->
+                <div class="table-card" id="doctors-section">
+                    <div class="table-header">
+                        <div class="table-title">Doctors Directory</div>
+                        <button class="btn btn-primary btn-sm" onclick="openAddDoctorModal()">+ Add Doctor</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Doctor Name</th>
+                                    <th>Specialization</th>
+                                    <th>Qualification</th>
+                                    <th>Experience</th>
+                                    <th>Consultation Fee</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-doctors-table">
+                                <tr><td colspan="8" style="text-align:center;padding:24px;color:#64748b;">Loading doctors...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Patients Directory Section -->
+                <div class="table-card" id="patients-section">
+                    <div class="table-header">
+                        <div class="table-title">Registered Patients Directory</div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Gender</th>
+                                    <th>Date of Birth</th>
+                                    <th>Address</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-patients-table">
+                                <tr><td colspan="7" style="text-align:center;padding:24px;color:#64748b;">Loading patients...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- All Appointments Section -->
+                <div class="table-card" id="appointments-section">
+                    <div class="table-header">
+                        <div class="table-title">All Hospital Appointments</div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Change Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-appointments-table">
+                                <tr><td colspan="7" style="text-align:center;padding:24px;color:#64748b;">Loading appointments...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Doctor Modal -->
+    <div class="modal-backdrop" id="add-doctor-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Add New Doctor</div>
+                <button class="modal-close" onclick="closeAddDoctorModal()">&times;</button>
+            </div>
+            <form id="add-doctor-form">
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Doctor Name *</label>
+                            <input type="text" id="doc-name" class="form-control" placeholder="Dr. John Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" id="doc-email" class="form-control" placeholder="doctor@hospital.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Default Password</label>
+                            <input type="password" id="doc-password" class="form-control" value="doctor123">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" id="doc-phone" class="form-control" placeholder="+1-555-0199">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Specialization *</label>
+                            <input type="text" id="doc-specialization" class="form-control" placeholder="e.g. Cardiology" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Qualification *</label>
+                            <input type="text" id="doc-qualification" class="form-control" placeholder="MD, FACC" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Experience (Years)</label>
+                            <input type="number" id="doc-experience" class="form-control" value="5" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Consultation Fee ($)</label>
+                            <input type="number" id="doc-fee" class="form-control" value="100.00" step="5" min="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Availability Status</label>
+                        <select id="doc-status" class="form-control">
+                            <option value="AVAILABLE">Available</option>
+                            <option value="UNAVAILABLE">Unavailable</option>
+                            <option value="ON_LEAVE">On Leave</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-sm" onclick="closeAddDoctorModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save Doctor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/qr-pass.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>

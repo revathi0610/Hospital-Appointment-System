@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare - Hospital Appointment Booking System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/smart-features.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container navbar">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                </svg>
+                <span>MediCare Hospital</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="doctors.html">Find Doctors</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions" id="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div>
+                <h1 class="hero-title">
+                    Your Health Is Our <span>Top Priority</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Connect with world-class medical specialists, book appointments with real-time slot availability, and manage your health seamlessly.
+                </p>
+                <div style="display:flex;gap:16px;flex-wrap:wrap;">
+                    <a href="book-appointment.html" class="btn btn-primary btn-lg">Book Your Appointment</a>
+                    <a href="doctors.html" class="btn btn-outline btn-lg">Meet Our Specialists</a>
+                </div>
+                <div class="hero-badges">
+                    <div class="hero-badge-item">✓ 24/7 Expert Doctors</div>
+                    <div class="hero-badge-item">✓ Real-time Slot Booking</div>
+                    <div class="hero-badge-item">✓ Zero Duplicate Wait Times</div>
+                    <div class="hero-badge-item">✓ Certified Specialists</div>
+                </div>
+            </div>
+            <div>
+                <div class="hero-card">
+                    <h3 style="font-size:1.4rem;font-weight:700;margin-bottom:12px;color:#0f172a;">Quick Appointment</h3>
+                    <p style="color:#64748b;font-size:0.95rem;margin-bottom:24px;">Need urgent consultation? Select your doctor and reserve your spot in under a minute.</p>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                        <a href="book-appointment.html" class="btn btn-primary" style="width:100%;">Instant Booking Wizard</a>
+                        <a href="register.html" class="btn btn-outline" style="width:100%;">Create New Patient Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Our Doctors Section -->
+    <section class="section" id="doctors-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Qualified Medical Experts</h2>
+                <p class="section-subtitle">Our board-certified physicians and specialists are dedicated to providing personalized healthcare.</p>
+            </div>
+            <div class="grid-4" id="doctors-list">
+                <!-- Dynamically populated by main.js -->
+            </div>
+            <div style="text-align:center;margin-top:40px;">
+                <a href="doctors.html" class="btn btn-outline btn-lg">View All Available Doctors →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Medical Services Section -->
+    <section class="section" id="services" style="background:#ffffff;border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Healthcare Services</h2>
+                <p class="section-subtitle">Comprehensive medical treatments and dedicated outpatient departments.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3 style="margin-bottom:8px;font-size:1.2rem;">Cardiology</h3>
+                    <p style="color:#64748b;font-size:0.92rem;">Advanced diagnostic cardiac testing, coronary intervention, preventive heart care, and rhythm management.</p>
+                </div>
+                <div class="card service-card">
+                    <div class="service-icon">🧠</div>
+                    <h3 style="margin-bottom:8px;font-size:1.2rem;">Neurology</h3>
+                    <p style="color:#64748b;font-size:0.92rem;">Specialized neuro-assessment, migraine clinics, stroke rehabilitation, and spine nerve evaluations.</p>
+                </div>
+                <div class="card service-card">
+                    <div class="service-icon">👶</div>
+                    <h3 style="margin-bottom:8px;font-size:1.2rem;">Pediatrics</h3>
+                    <p style="color:#64748b;font-size:0.92rem;">Compassionate infant and child medical checkups, immunizations, and developmental health monitoring.</p>
+                </div>
+                <div class="card service-card">
+                    <div class="service-icon">🦴</div>
+                    <h3 style="margin-bottom:8px;font-size:1.2rem;">Orthopedics</h3>
+                    <p style="color:#64748b;font-size:0.92rem;">Joint replacement treatments, sports injury recovery, fracture care, and orthopedic therapy.</p>
+                </div>
+                <div class="card service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3 style="margin-bottom:8px;font-size:1.2rem;">Diagnostics & Lab</h3>
+                    <p style="color:#64748b;font-size:0.92rem;">Ultra-modern clinical laboratory testing, rapid blood screenings, and digital radiography.</p>
+                </div>
+                <div class="card service-card">
+                    <div class="service-icon">🚑</div>
+                    <h3 style="margin-bottom:8px;font-size:1.2rem;">24/7 Emergency Care</h3>
+                    <p style="color:#64748b;font-size:0.92rem;">Round-the-clock emergency medical attention with trauma teams and life-support transport.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+            <div>
+                <h2 class="section-title" style="text-align:left;">Why Choose MediCare?</h2>
+                <p style="color:#64748b;margin-bottom:16px;">MediCare Hospital is committed to delivering state-of-the-art medical excellence with patient-centered compassion. We empower our patients with seamless online scheduling and direct access to trusted specialists.</p>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;color:#334155;font-weight:500;">
+                    <li>✓ Over 15+ years of trusted clinical excellence</li>
+                    <li>✓ Zero double-booking algorithm for on-time consultations</li>
+                    <li>✓ Secure and confidential medical records</li>
+                    <li>✓ Multi-specialty hospital with leading surgeons</li>
+                </ul>
+            </div>
+            <div style="background:var(--primary-light);border-radius:var(--radius-lg);padding:40px;border:1px solid #bae6fd;">
+                <h3 style="color:#0369a1;margin-bottom:12px;font-size:1.4rem;">Hospital Stats</h3>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+                    <div>
+                        <div style="font-size:2.2rem;font-weight:800;color:#0284c7;">25+</div>
+                        <div style="color:#64748b;font-size:0.9rem;">Specialist Doctors</div>
+                    </div>
+                    <div>
+                        <div style="font-size:2.2rem;font-weight:800;color:#0284c7;">50k+</div>
+                        <div style="color:#64748b;font-size:0.9rem;">Happy Patients</div>
+                    </div>
+                    <div>
+                        <div style="font-size:2.2rem;font-weight:800;color:#0284c7;">100%</div>
+                        <div style="color:#64748b;font-size:0.9rem;">Verified Consultations</div>
+                    </div>
+                    <div>
+                        <div style="font-size:2.2rem;font-weight:800;color:#0284c7;">24/7</div>
+                        <div style="color:#64748b;font-size:0.9rem;">Emergency Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact" style="background:#ffffff;border-top:1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Reach out for inquiries, emergency visits, or appointment support.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card" style="text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:12px;">📍</div>
+                    <h4>Hospital Location</h4>
+                    <p style="color:#64748b;font-size:0.9rem;margin-top:6px;">100 Healthcare Parkway, Medical District, NY 10001</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:12px;">📞</div>
+                    <h4>Phone Support</h4>
+                    <p style="color:#64748b;font-size:0.9rem;margin-top:6px;">Emergency: +1-800-555-0199<br>Appointments: +1-800-555-0100</p>
+                </div>
+                <div class="card" style="text-align:center;">
+                    <div style="font-size:2rem;margin-bottom:12px;">✉️</div>
+                    <h4>Email Inquiries</h4>
+                    <p style="color:#64748b;font-size:0.9rem;margin-top:6px;">support@medicare-hospital.com<br>info@medicare-hospital.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h3>MediCare Hospital</h3>
+                <p style="color:#94a3b8;font-size:0.9rem;line-height:1.6;">
+                    Providing modern, compassionate healthcare management and instant appointment scheduling for patients and medical professionals.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="doctors.html">Doctors Directory</a></li>
+                    <li><a href="book-appointment.html">Book Appointment</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Departments</h4>
+                <ul class="footer-links">
+                    <li><a href="doctors.html?spec=Cardiology">Cardiology</a></li>
+                    <li><a href="doctors.html?spec=Neurology">Neurology</a></li>
+                    <li><a href="doctors.html?spec=Pediatrics">Pediatrics</a></li>
+                    <li><a href="doctors.html?spec=Orthopedics">Orthopedics</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Academic Project</h4>
+                <p style="color:#94a3b8;font-size:0.88rem;">
+                    Full-Stack Hospital Appointment Booking System developed using Spring Boot, MySQL, and JavaScript.
+                </p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 MediCare Hospital Appointment Booking System. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

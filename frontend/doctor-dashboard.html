@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Portal - MediCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/smart-features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo" style="font-size:1.15rem;">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="#0284c7">
+                        <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                    </svg>
+                    <span>MediCare</span>
+                </a>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="user-avatar-sm" id="sidebar-user-avatar">D</div>
+                <div class="user-info-text">
+                    <div class="user-name" id="sidebar-user-name">Loading...</div>
+                    <div class="user-role-badge" id="sidebar-user-role">DOCTOR</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="doctor-dashboard.html" class="active" id="menu-dashboard">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Dashboard & Queue
+                    </a>
+                </li>
+                <li>
+                    <a href="#doctor-analytics-section">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        Operational Analytics
+                    </a>
+                </li>
+                <li>
+                    <a href="#qr-verify-section">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                        Verify QR Pass
+                    </a>
+                </li>
+                <li>
+                    <a href="patients.html" id="menu-patients">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Patient Records
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn btn-outline btn-sm" style="width:100%;color:#ef4444;border-color:#ef4444;">
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="topbar">
+                <div class="topbar-title">Doctor Consultation Dashboard</div>
+                <div style="display:flex;align-items:center;">
+                    <!-- Notification Bell mounts here -->
+                    <span class="badge badge-available">Online & Accepting Appointments</span>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <!-- Stat Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Today's Appointments</h4>
+                            <div class="stat-number" id="stat-today">0</div>
+                        </div>
+                        <div class="stat-icon stat-blue">🩺</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Upcoming Visits</h4>
+                            <div class="stat-number" id="stat-upcoming">0</div>
+                        </div>
+                        <div class="stat-icon stat-teal">📅</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Total Patients</h4>
+                            <div class="stat-number" id="stat-patients">0</div>
+                        </div>
+                        <div class="stat-icon stat-amber">👥</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Pending Action</h4>
+                            <div class="stat-number" id="stat-pending">0</div>
+                        </div>
+                        <div class="stat-icon stat-green">⏳</div>
+                    </div>
+                </div>
+
+                <!-- Appointments Table Card -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <div class="table-title">Scheduled Patient Appointments & Live Queue</div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Appointment ID</th>
+                                    <th>Patient</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Reason / Symptoms</th>
+                                    <th>Status</th>
+                                    <th>Actions & Verification</th>
+                                </tr>
+                            </thead>
+                            <tbody id="doctor-appointments-table">
+                                <tr>
+                                    <td colspan="7" style="text-align:center;padding:32px;color:#64748b;">
+                                        Loading scheduled consultations...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- FEATURE 7: DOCTOR OPERATIONAL ANALYTICS -->
+                <div class="table-card" id="doctor-analytics-section" style="margin-top:28px;">
+                    <div class="table-header">
+                        <div class="table-title">📊 Doctor Clinical & Operational Analytics</div>
+                    </div>
+                    <div style="padding:20px;">
+                        <div class="stats-grid" style="grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));margin-bottom:20px;">
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h4>Completion Rate</h4>
+                                    <div class="stat-number" id="stat-completion-rate" style="color:#16a34a;">0%</div>
+                                </div>
+                                <div class="stat-icon stat-green">✅</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h4>Cancellation Rate</h4>
+                                    <div class="stat-number" id="stat-cancellation-rate" style="color:#ef4444;">0%</div>
+                                </div>
+                                <div class="stat-icon stat-amber">🚫</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h4>Avg Consultation</h4>
+                                    <div class="stat-number" id="stat-avg-duration">15 mins</div>
+                                </div>
+                                <div class="stat-icon stat-blue">⏱️</div>
+                            </div>
+                        </div>
+
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+                            <!-- Busiest Days Chart -->
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <span>🗓️ Workload Distribution by Day</span>
+                                </div>
+                                <div id="doc-day-distribution-bars">
+                                    <div style="color:#94a3b8;font-size:0.85rem;">Loading day distribution...</div>
+                                </div>
+                            </div>
+
+                            <!-- Duration Setting -->
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <span>⚙️ Consultation Duration Setting</span>
+                                </div>
+                                <p style="font-size:0.85rem;color:#64748b;margin-bottom:14px;">
+                                    This duration directly drives real-time queue waiting estimations for your arriving patients.
+                                </p>
+                                <div class="form-group">
+                                    <label class="form-label">Average Minutes per Patient</label>
+                                    <div style="display:flex;gap:10px;">
+                                        <input type="number" id="input-avg-duration" class="form-control" min="5" max="120" value="15" style="max-width:140px;">
+                                        <button class="btn btn-primary btn-sm" onclick="saveDoctorConsultationDuration()">Save Duration</button>
+                                    </div>
+                                    <div class="form-hint">Standard recommendation: 15 to 20 minutes.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FEATURE 6: QR PASS VERIFICATION TOOL -->
+                <div class="table-card" id="qr-verify-section" style="margin-top:28px;">
+                    <div class="table-header">
+                        <div class="table-title">🔍 Patient Check-In & QR Pass Verifier</div>
+                    </div>
+                    <div style="padding:20px;max-width:650px;">
+                        <p style="font-size:0.85rem;color:#64748b;margin-bottom:12px;">
+                            Scan patient's digital boarding pass QR or paste their UUID token below for immediate check-in validation.
+                        </p>
+                        <div style="display:flex;gap:10px;margin-bottom:16px;">
+                            <input type="text" id="qr-verify-token-input" class="form-control" placeholder="Enter or scan pass UUID token...">
+                            <button id="btn-verify-qr-token" class="btn btn-primary" style="white-space:nowrap;">Verify Pass</button>
+                        </div>
+                        <div id="qr-verify-result-output"></div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Patient Details Modal -->
+    <div class="modal-backdrop" id="patient-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Patient Profile Information</div>
+                <button class="modal-close" onclick="closePatientModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div>
+                        <strong style="font-size:0.85rem;color:#64748b;">Patient Name:</strong>
+                        <div id="modal-patient-name" style="font-weight:600;font-size:1.05rem;color:#0f172a;">-</div>
+                    </div>
+                    <div>
+                        <strong style="font-size:0.85rem;color:#64748b;">Email Address:</strong>
+                        <div id="modal-patient-email" style="color:#0f172a;">-</div>
+                    </div>
+                    <div>
+                        <strong style="font-size:0.85rem;color:#64748b;">Phone Number:</strong>
+                        <div id="modal-patient-phone" style="color:#0f172a;">-</div>
+                    </div>
+                    <div>
+                        <strong style="font-size:0.85rem;color:#64748b;">Date of Birth:</strong>
+                        <div id="modal-patient-dob" style="color:#0f172a;">-</div>
+                    </div>
+                    <div>
+                        <strong style="font-size:0.85rem;color:#64748b;">Gender:</strong>
+                        <div id="modal-patient-gender" style="color:#0f172a;">-</div>
+                    </div>
+                    <div>
+                        <strong style="font-size:0.85rem;color:#64748b;">Address:</strong>
+                        <div id="modal-patient-address" style="color:#0f172a;">-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline btn-sm" onclick="closePatientModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/qr-pass.js"></script>
+    <script src="js/doctor.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>

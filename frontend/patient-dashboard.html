@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal - MediCare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/smart-features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo" style="font-size:1.15rem;">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="#0284c7">
+                        <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                    </svg>
+                    <span>MediCare</span>
+                </a>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="user-avatar-sm" id="sidebar-user-avatar">P</div>
+                <div class="user-info-text">
+                    <div class="user-name" id="sidebar-user-name">Loading...</div>
+                    <div class="user-role-badge" id="sidebar-user-role">PATIENT</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="patient-dashboard.html" class="active" id="menu-dashboard">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                        Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#symptom-finder-section">
+                        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        Symptom Finder
+                    </a>
+                </li>
+                <li>
+                    <a href="#marketplace-section">
+                        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                        Slot Marketplace
+                    </a>
+                </li>
+                <li>
+                    <a href="doctors.html" id="menu-doctors">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        Find Doctors
+                    </a>
+                </li>
+                <li>
+                    <a href="book-appointment.html" id="menu-book">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        Book Appointment
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html" id="menu-appointments">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        My Appointments
+                    </a>
+                </li>
+                <li>
+                    <a href="#profile" onclick="document.getElementById('profile-modal').classList.add('active');return false;" id="menu-profile">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                        Profile Settings
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="btn btn-outline btn-sm" style="width:100%;color:#ef4444;border-color:#ef4444;">
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="topbar">
+                <div class="topbar-title">Patient Portal Overview</div>
+                <div style="display:flex;align-items:center;">
+                    <!-- Notification Bell will mount here -->
+                    <a href="book-appointment.html" class="btn btn-primary btn-sm">+ Book New Appointment</a>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <!-- Stat Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Upcoming Visits</h4>
+                            <div class="stat-number" id="stat-upcoming">0</div>
+                        </div>
+                        <div class="stat-icon stat-blue">📅</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Previous Visits</h4>
+                            <div class="stat-number" id="stat-past">0</div>
+                        </div>
+                        <div class="stat-icon stat-teal">📋</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h4>Specialist Doctors</h4>
+                            <div class="stat-number">4</div>
+                        </div>
+                        <div class="stat-icon stat-amber">🩺</div>
+                    </div>
+                </div>
+
+                <!-- FEATURE 2: SYMPTOM -> SPECIALIST FINDER -->
+                <div class="symptom-finder-card" id="symptom-finder-section">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                        <span style="font-size:1.4rem;">🩺</span>
+                        <h3 style="margin:0;font-size:1.15rem;color:#0369a1;font-weight:800;">Smart Symptom → Specialist Finder</h3>
+                    </div>
+                    <p style="margin:0;font-size:0.86rem;color:#475569;">
+                        Describe how you feel (e.g. <em>"I have frequent headaches, dizziness and sensitivity to light"</em>). Our intelligent clinical matcher will recommend the most appropriate hospital department.
+                    </p>
+                    <div class="symptom-input-row">
+                        <textarea id="symptom-input" class="symptom-textarea" placeholder="Describe symptoms or reasons for visit..."></textarea>
+                        <button id="symptom-search-btn" class="btn btn-primary" style="white-space:nowrap;padding:0 22px;font-weight:700;">
+                            Analyze Symptoms
+                        </button>
+                    </div>
+                    <div id="symptom-results-container"></div>
+                </div>
+
+                <!-- Upcoming Appointments Table Card -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <div class="table-title">Upcoming Appointments & Passes</div>
+                        <a href="appointments.html" class="btn btn-outline btn-sm">View Full History →</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Appointment ID</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Status</th>
+                                    <th>Actions & Passes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="patient-upcoming-table">
+                                <tr>
+                                    <td colspan="6" style="text-align:center;padding:32px;color:#64748b;">
+                                        Loading your schedule...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- FEATURE 3: SLOT MARKETPLACE -->
+                <div class="table-card" id="marketplace-section" style="margin-top:28px;">
+                    <div class="table-header">
+                        <div>
+                            <div class="table-title">🔄 Slot Marketplace (Released Appointments)</div>
+                            <div style="font-size:0.8rem;color:#64748b;margin-top:2px;">
+                                Slots released by other patients. Claim them instantly for immediate confirmed booking!
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-sm" id="open-waitlist-modal-btn">
+                            🎟️ Join Doctor Waitlist
+                        </button>
+                    </div>
+                    <div id="marketplace-slots-container" style="padding:16px;">
+                        <div style="text-align:center;color:#64748b;padding:24px;">Loading marketplace slots...</div>
+                    </div>
+                </div>
+
+                <!-- MY ACTIVE WAITLISTS -->
+                <div class="table-card" style="margin-top:28px;">
+                    <div class="table-header">
+                        <div class="table-title">📋 My Active Waitlists</div>
+                    </div>
+                    <div id="patient-waitlists-list" style="padding:16px;">
+                        <div style="text-align:center;color:#64748b;padding:16px;">Loading waitlists...</div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal-backdrop" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">My Profile Details</div>
+                <button class="modal-close" onclick="document.getElementById('profile-modal').classList.remove('active')">&times;</button>
+            </div>
+            <form id="patient-profile-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" id="profile-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email (Read Only)</label>
+                        <input type="email" id="profile-email" class="form-control" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" id="profile-phone" class="form-control">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Date of Birth</label>
+                            <input type="date" id="profile-dob" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <select id="profile-gender" class="form-control">
+                                <option value="MALE">Male</option>
+                                <option value="FEMALE">Female</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <textarea id="profile-address" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('profile-modal').classList.remove('active')">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/patient.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/qr-pass.js"></script>
+    <script src="js/smart-patient.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

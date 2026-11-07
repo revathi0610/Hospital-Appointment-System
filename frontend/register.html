@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration - MediCare Hospital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="auth-wrapper">
+        <div class="auth-card" style="max-width: 600px;">
+            <div class="auth-header">
+                <a href="index.html" class="auth-logo">
+                    <svg viewBox="0 0 24 24" width="32" height="32" fill="#0284c7">
+                        <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                    </svg>
+                    <span>MediCare</span>
+                </a>
+                <h1 class="auth-title">Create Patient Account</h1>
+                <p class="auth-subtitle">Register to book appointments, consult doctors, and view health records</p>
+            </div>
+
+            <form id="register-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-name">Full Name *</label>
+                        <input type="text" id="reg-name" class="form-control" placeholder="John Doe" required minlength="2">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="reg-email">Email Address *</label>
+                        <input type="email" id="reg-email" class="form-control" placeholder="john.doe@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-password">Password *</label>
+                        <input type="password" id="reg-password" class="form-control" placeholder="At least 6 characters" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="reg-phone">Phone Number</label>
+                        <input type="tel" id="reg-phone" class="form-control" placeholder="+1-555-0123">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="reg-dob">Date of Birth</label>
+                        <input type="date" id="reg-dob" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="reg-gender">Gender</label>
+                        <select id="reg-gender" class="form-control">
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="reg-address">Residential Address</label>
+                    <input type="text" id="reg-address" class="form-control" placeholder="Street address, City, Postal code">
+                </div>
+
+                <button type="submit" id="reg-btn" class="btn btn-primary" style="width:100%;margin-top:8px;">
+                    Complete Registration
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="login.html" style="font-weight:600;">Sign in here</a>
+            </div>
+            <div style="text-align:center;margin-top:16px;">
+                <a href="index.html" style="font-size:0.88rem;color:#64748b;">← Back to Homepage</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const phone = document.getElementById('reg-phone').value.trim();
+            const dateOfBirth = document.getElementById('reg-dob').value;
+            const gender = document.getElementById('reg-gender').value;
+            const address = document.getElementById('reg-address').value.trim();
+
+            const btn = document.getElementById('reg-btn');
+            btn.disabled = true;
+            btn.textContent = 'Registering Account...';
+
+            const payload = {
+                name,
+                email,
+                password,
+                phone: phone || null,
+                dateOfBirth: dateOfBirth || null,
+                gender: gender || 'MALE',
+                address: address || null
+            };
+
+            try {
+                const res = await apiRequest('/auth/register', 'POST', payload);
+                if (res.success && res.data) {
+                    showToast('Registration successful! Logging you in...', 'success');
+                    setCurrentUser(res.data);
+                    setTimeout(() => {
+                        window.location.href = 'patient-dashboard.html';
+                    }, 1000);
+                }
+            } catch (err) {
+                showToast(err.message || 'Registration failed', 'error');
+                btn.disabled = false;
+                btn.textContent = 'Complete Registration';
+            }
+        });
+    </script>
+</body>
+</html>
