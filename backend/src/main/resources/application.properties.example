@@ -1,13 +1,10 @@
-# ===================================================================
-# Hospital Appointment Booking System - Configuration Template
-# Copy this file to application.properties and update your credentials!
-# ===================================================================
-server.port=8080
+# Server Configuration
+server.port=${PORT:8080}
 
 # Database Configuration
-spring.datasource.url=jdbc:mysql://localhost:3306/hospital_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-spring.datasource.username=root
-spring.datasource.password=YOUR_MYSQL_PASSWORD
+spring.datasource.url=${DB_URL}
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
 # JPA / Hibernate
